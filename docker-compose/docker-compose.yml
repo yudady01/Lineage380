@@ -28,3 +28,24 @@ services:
         reservations:
           cpus: '0.5'
           memory: 512M
+
+
+  lineage:
+    container_name: lineage_380
+    build:
+      context: ./
+      dockerfile: lineage.Dockerfile
+    ports:
+      - "23:23"
+    restart: always
+    depends_on:
+      - mysql
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1024M
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
