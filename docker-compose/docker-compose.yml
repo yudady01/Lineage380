@@ -33,10 +33,11 @@ services:
   lineage:
     container_name: lineage_380
     build:
-      context: ./
-      dockerfile: lineage.Dockerfile
+      context: ../
+      dockerfile: docker-compose/lineage.Dockerfile
     ports:
       - "23:23"
+      - "8080:8080"
     restart: always
     depends_on:
       - mysql

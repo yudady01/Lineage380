@@ -25,6 +25,7 @@ import l1j.server.util.ClassPathResourceUtil;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * l1j 伺服器啟動
@@ -36,10 +37,16 @@ public class Server implements CommandLineRunner {
      */
     private static Logger _log = Logger.getLogger(Server.class.getName());
 
+
     /**
      * 紀錄檔的路徑
      */
     private static final String LOG_PROP = "config/log.properties";
+
+    @RequestMapping("/")
+    public String hello() {
+        return "hello";
+    }
 
     /**
      * サーバメイン.
