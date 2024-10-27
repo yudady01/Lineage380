@@ -22,14 +22,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.server.utils.IntRange;
+import l1j.server.util.InputStreamUtil;
 
 public final class Config {
     private static final Logger _log = Logger.getLogger(Config.class.getName());
 
-    /** Debug/release mode */
+    /**
+     * Debug/release mode
+     */
     public static final boolean DEBUG = false;
 
-    /** Thread pools size */
+    /**
+     * Thread pools size
+     */
     public static int THREAD_P_EFFECTS;
 
     public static int THREAD_P_GENERAL;
@@ -40,7 +45,9 @@ public final class Config {
 
     public static int THREAD_P_SIZE_GENERAL;
 
-    /** Server control */
+    /**
+     * Server control
+     */
     public static String GAME_SERVER_HOST_NAME;
 
     public static int GAME_SERVER_PORT;
@@ -117,7 +124,9 @@ public final class Config {
 
     public static boolean Announcements_Cycle_Modify_Time;
 
-    /** Rate control */
+    /**
+     * Rate control
+     */
     public static double RATE_XP;
 
     public static double RATE_LA;
@@ -162,7 +171,9 @@ public final class Config {
 
     public static int MAGIC_STONE_LEVEL; // 附魔石階級
 
-    /** AltSettings control */
+    /**
+     * AltSettings control
+     */
     public static short GLOBAL_CHAT_LEVEL;
 
     public static short WHISPER_CHAT_LEVEL;
@@ -253,7 +264,9 @@ public final class Config {
 
     public static int GDROPITEM_TIME;
 
-    /** CharSettings control */
+    /**
+     * CharSettings control
+     */
     public static int PRINCE_MAX_HP;
 
     public static int PRINCE_MAX_MP;
@@ -382,7 +395,9 @@ public final class Config {
 
     public static int LV99_EXP;
 
-    /** FightSettings control */
+    /**
+     * FightSettings control
+     */
     public static boolean FIGHT_IS_ACTIVE;
 
     public static boolean NOVICE_PROTECTION_IS_ACTIVE;
@@ -391,7 +406,9 @@ public final class Config {
 
     public static int NOVICE_PROTECTION_LEVEL_RANGE;
 
-    /**Record Settings*/
+    /**
+     * Record Settings
+     */
     public static byte LOGGING_WEAPON_ENCHANT;
 
     public static byte LOGGING_ARMOR_ENCHANT;
@@ -422,7 +439,9 @@ public final class Config {
 
     public static boolean CompressGzip;
 
-    /** Configuration files */
+    /**
+     * Configuration files
+     */
     public static final String SERVER_CONFIG_FILE = "config/server.properties";
 
     public static final String RATES_CONFIG_FILE = "config/rates.properties";
@@ -435,7 +454,9 @@ public final class Config {
 
     public static final String RECORD_SETTINGS_CONFIG_FILE = "config/record.properties";
 
-    /** 其他設定 */
+    /**
+     * 其他設定
+     */
 
     // 吸收每個 NPC 的 MP 上限
     public static final int MANA_DRAIN_LIMIT_PER_NPC = 40;
@@ -448,7 +469,7 @@ public final class Config {
         // server.properties
         try {
             Properties serverSettings = new Properties();
-            InputStream is = getInputStreamFromClasspath(SERVER_CONFIG_FILE);
+            InputStream is = InputStreamUtil.getInputStreamFromClasspath(SERVER_CONFIG_FILE);
             serverSettings.load(is);
             is.close();
 
@@ -499,7 +520,7 @@ public final class Config {
         // rates.properties
         try {
             Properties rateSettings = new Properties();
-            InputStream is = getInputStreamFromClasspath(RATES_CONFIG_FILE);
+            InputStream is = InputStreamUtil.getInputStreamFromClasspath(RATES_CONFIG_FILE);
             rateSettings.load(is);
             is.close();
 
@@ -533,7 +554,7 @@ public final class Config {
         // altsettings.properties
         try {
             Properties altSettings = new Properties();
-            InputStream is = getInputStreamFromClasspath(ALT_SETTINGS_FILE);
+            InputStream is = InputStreamUtil.getInputStreamFromClasspath(ALT_SETTINGS_FILE);
             altSettings.load(is);
             is.close();
 
@@ -611,7 +632,7 @@ public final class Config {
         // charsettings.properties
         try {
             Properties charSettings = new Properties();
-            InputStream is = getInputStreamFromClasspath(CHAR_SETTINGS_CONFIG_FILE);
+            InputStream is = InputStreamUtil.getInputStreamFromClasspath(CHAR_SETTINGS_CONFIG_FILE);
             charSettings.load(is);
             is.close();
 
@@ -687,7 +708,7 @@ public final class Config {
         // fights.properties
         Properties fightSettings = new Properties();
         try {
-            InputStream is = getInputStreamFromClasspath(FIGHT_SETTINGS_CONFIG_FILE);
+            InputStream is = InputStreamUtil.getInputStreamFromClasspath(FIGHT_SETTINGS_CONFIG_FILE);
             fightSettings.load(is);
             is.close();
 
@@ -703,7 +724,7 @@ public final class Config {
         // record.properties
         try {
             Properties recordSettings = new Properties();
-            InputStream is = getInputStreamFromClasspath(RECORD_SETTINGS_CONFIG_FILE);
+            InputStream is = InputStreamUtil.getInputStreamFromClasspath(RECORD_SETTINGS_CONFIG_FILE);
             recordSettings.load(is);
             is.close();
 
@@ -1007,7 +1028,5 @@ public final class Config {
     private Config() {
     }
 
-    private static InputStream getInputStreamFromClasspath(String path) {
-        return Config.class.getClassLoader().getResourceAsStream(path);
-    }
+
 }

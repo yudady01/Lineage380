@@ -21,12 +21,16 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import l1j.server.server.GameServer;
 import l1j.server.telnet.TelnetServer;
+import l1j.server.util.InputStreamUtil;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * l1j 伺服器啟動
  */
-// @SpringBootApplication
-public class Server {
+@SpringBootApplication
+public class Server implements CommandLineRunner {
     /**
      * 紀錄用
      */
@@ -44,12 +48,17 @@ public class Server {
      * @throws Exception
      */
     public static void main(final String[] args) throws Exception {
+        SpringApplication.run(Server.class, args);
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
         File logFolder = new File("log");
         logFolder.mkdir();
 
         try {
-            InputStream is = Server.class.getClassLoader().getResourceAsStream(LOG_PROP);
-            // InputStream is = new BufferedInputStream(new FileInputStream(LOG_PROP));
+            // InputStream is = Server.class.getClassLoader().getResourceAsStream(LOG_PROP);
+            InputStream is = InputStreamUtil.getInputStreamFromClasspath(LOG_PROP);
             LogManager.getLogManager().readConfiguration(is);
             is.close();
         } catch (IOException e) {
@@ -72,5 +81,4 @@ public class Server {
             TelnetServer.getInstance().start();
         }
     }
-
 }

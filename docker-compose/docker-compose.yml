@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+
+  mysql:
+    container_name: mysql_5
+    build:
+      context: ./
+      dockerfile: mysql5.Dockerfile
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: xxpay
+      MYSQL_USER: xxpay
+      MYSQL_PASSWORD: 123456
+      TZ: Asia/Shanghai
+    volumes:
+      - ./conf/sqls:/docker-entrypoint-initdb.d # init sql
+    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    security_opt:
+      - seccomp:unconfined
+    depends_on:
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1024M
+        reservations:
+          cpus: '0.5'
+          memory: 512M
