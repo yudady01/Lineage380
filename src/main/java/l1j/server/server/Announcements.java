@@ -30,6 +30,9 @@ import l1j.server.server.serverpackets.S_SystemMessage;
 import l1j.server.server.utils.StreamUtil;
 import l1j.server.server.utils.collections.Lists;
 
+
+import static l1j.server.util.ClassPathResourceUtil.getFileFromClasspath;
+
 public class Announcements {
 	private static Logger _log = Logger.getLogger(Announcements.class.getName());
 
@@ -51,7 +54,7 @@ public class Announcements {
 
 	private void loadAnnouncements() {
 		_announcements.clear();
-		File file = new File("data/announcements.txt");
+		File file = getFileFromClasspath("data/announcements.txt");
 		if (file.exists()) {
 			readFromDisk(file);
 		} else {

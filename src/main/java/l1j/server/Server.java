@@ -21,7 +21,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import l1j.server.server.GameServer;
 import l1j.server.telnet.TelnetServer;
-import l1j.server.util.InputStreamUtil;
+import l1j.server.util.ClassPathResourceUtil;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -58,7 +58,7 @@ public class Server implements CommandLineRunner {
 
         try {
             // InputStream is = Server.class.getClassLoader().getResourceAsStream(LOG_PROP);
-            InputStream is = InputStreamUtil.getInputStreamFromClasspath(LOG_PROP);
+            InputStream is = ClassPathResourceUtil.getInputStreamFromClasspath(LOG_PROP);
             LogManager.getLogManager().readConfiguration(is);
             is.close();
         } catch (IOException e) {

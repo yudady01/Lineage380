@@ -33,6 +33,9 @@ import l1j.server.server.serverpackets.S_ClanName;
 import l1j.server.server.serverpackets.S_PacketBox;
 import l1j.server.server.serverpackets.S_ServerMessage;
 
+
+import static l1j.server.util.ClassPathResourceUtil.getFileFromClasspath;
+
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
 
@@ -111,7 +114,7 @@ public class C_LeaveClan extends ClientBasePacket {
 					}
 				}
 				String emblem_file = String.valueOf(clan.getEmblemId());
-				File file = new File("emblem/" + emblem_file);
+				File file = getFileFromClasspath("emblem/" + emblem_file);
 				file.delete();
 				ClanTable.getInstance().deleteClan(clan_name);
 				ClanMembersTable.getInstance().deleteAllMember(clan.getClanId()); // 刪除所有成員資料

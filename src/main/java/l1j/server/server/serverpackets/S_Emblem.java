@@ -21,6 +21,9 @@ import java.io.IOException;
 
 import l1j.server.server.Opcodes;
 
+
+import static l1j.server.util.ClassPathResourceUtil.getFileFromClasspath;
+
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket
 
@@ -31,7 +34,7 @@ public class S_Emblem extends ServerBasePacket {
 		BufferedInputStream bis = null;
 		try {
 			String emblem_file = String.valueOf(emblemId);
-			File file = new File("emblem/" + emblem_file);
+			File file = getFileFromClasspath("emblem/" + emblem_file);
 			if (file.exists()) {
 				int data = 0;
 				bis = new BufferedInputStream(new FileInputStream(file));

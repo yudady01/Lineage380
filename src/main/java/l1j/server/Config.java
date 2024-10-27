@@ -13,8 +13,6 @@
  */
 package l1j.server;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Calendar;
 import java.util.Properties;
@@ -22,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import l1j.server.server.utils.IntRange;
-import l1j.server.util.InputStreamUtil;
+import l1j.server.util.ClassPathResourceUtil;
 
 public final class Config {
     private static final Logger _log = Logger.getLogger(Config.class.getName());
@@ -469,7 +467,7 @@ public final class Config {
         // server.properties
         try {
             Properties serverSettings = new Properties();
-            InputStream is = InputStreamUtil.getInputStreamFromClasspath(SERVER_CONFIG_FILE);
+            InputStream is = ClassPathResourceUtil.getInputStreamFromClasspath(SERVER_CONFIG_FILE);
             serverSettings.load(is);
             is.close();
 
@@ -520,7 +518,7 @@ public final class Config {
         // rates.properties
         try {
             Properties rateSettings = new Properties();
-            InputStream is = InputStreamUtil.getInputStreamFromClasspath(RATES_CONFIG_FILE);
+            InputStream is = ClassPathResourceUtil.getInputStreamFromClasspath(RATES_CONFIG_FILE);
             rateSettings.load(is);
             is.close();
 
@@ -554,7 +552,7 @@ public final class Config {
         // altsettings.properties
         try {
             Properties altSettings = new Properties();
-            InputStream is = InputStreamUtil.getInputStreamFromClasspath(ALT_SETTINGS_FILE);
+            InputStream is = ClassPathResourceUtil.getInputStreamFromClasspath(ALT_SETTINGS_FILE);
             altSettings.load(is);
             is.close();
 
@@ -632,7 +630,7 @@ public final class Config {
         // charsettings.properties
         try {
             Properties charSettings = new Properties();
-            InputStream is = InputStreamUtil.getInputStreamFromClasspath(CHAR_SETTINGS_CONFIG_FILE);
+            InputStream is = ClassPathResourceUtil.getInputStreamFromClasspath(CHAR_SETTINGS_CONFIG_FILE);
             charSettings.load(is);
             is.close();
 
@@ -708,7 +706,7 @@ public final class Config {
         // fights.properties
         Properties fightSettings = new Properties();
         try {
-            InputStream is = InputStreamUtil.getInputStreamFromClasspath(FIGHT_SETTINGS_CONFIG_FILE);
+            InputStream is = ClassPathResourceUtil.getInputStreamFromClasspath(FIGHT_SETTINGS_CONFIG_FILE);
             fightSettings.load(is);
             is.close();
 
@@ -724,7 +722,7 @@ public final class Config {
         // record.properties
         try {
             Properties recordSettings = new Properties();
-            InputStream is = InputStreamUtil.getInputStreamFromClasspath(RECORD_SETTINGS_CONFIG_FILE);
+            InputStream is = ClassPathResourceUtil.getInputStreamFromClasspath(RECORD_SETTINGS_CONFIG_FILE);
             recordSettings.load(is);
             is.close();
 

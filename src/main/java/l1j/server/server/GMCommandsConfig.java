@@ -14,6 +14,7 @@
  */
 package l1j.server.server;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,7 @@ import l1j.server.server.utils.IterableElementList;
 import l1j.server.server.utils.collections.Lists;
 import l1j.server.server.utils.collections.Maps;
 
+import l1j.server.util.ClassPathResourceUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -124,7 +126,7 @@ public class GMCommandsConfig {
 
 	public static void load() {
 		try {
-			Document doc = loadXml("./data/xml/GmCommands/GMCommands.xml");
+			Document doc = loadXml(ClassPathResourceUtil.getPathFromClasspath("data/xml/GmCommands/GMCommands.xml"));
 			NodeList nodes = doc.getDocumentElement().getChildNodes();
 			for (int i = 0; i < nodes.getLength(); i++) {
 				ConfigLoader loader = _loaders.get(nodes.item(i).getNodeName()

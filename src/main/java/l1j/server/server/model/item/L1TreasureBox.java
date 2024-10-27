@@ -41,6 +41,9 @@ import l1j.server.server.utils.PerformanceTimer;
 import l1j.server.server.utils.Random;
 import l1j.server.server.utils.collections.Maps;
 
+
+import static l1j.server.util.ClassPathResourceUtil.getFileFromClasspath;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 public class L1TreasureBox {
 
@@ -99,7 +102,7 @@ public class L1TreasureBox {
 		RANDOM, SPECIFIC
 	}
 
-	private static final String PATH = "./data/xml/Item/TreasureBox.xml";
+	private static final String PATH = "data/xml/Item/TreasureBox.xml";
 
 	private static final Map<Integer, L1TreasureBox> _dataMap = Maps.newMap();
 
@@ -163,7 +166,7 @@ public class L1TreasureBox {
 
 			Unmarshaller um = context.createUnmarshaller();
 
-			File file = new File(PATH);
+			File file = getFileFromClasspath(PATH);
 			TreasureBoxList list = (TreasureBoxList) um.unmarshal(file);
 
 			for (L1TreasureBox each : list) {

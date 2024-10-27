@@ -23,6 +23,9 @@ import java.util.StringTokenizer;
 import l1j.server.server.Opcodes;
 import l1j.server.server.utils.collections.Lists;
 
+
+import static l1j.server.util.ClassPathResourceUtil.getFileFromClasspath;
+
 // Referenced classes of package l1j.server.server.serverpackets:
 // ServerBasePacket
 
@@ -49,7 +52,7 @@ public class S_CommonNews extends ServerBasePacket {
 
 	private void loadAnnouncements() {
 		_announcements.clear();
-		File file = new File("data/announcements.txt");
+		File file = getFileFromClasspath("data/announcements.txt");
 		if (file.exists()) {
 			readFromDisk(file);
 		}

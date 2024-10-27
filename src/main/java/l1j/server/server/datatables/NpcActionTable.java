@@ -35,6 +35,9 @@ import l1j.server.server.utils.collections.Lists;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
+
+import static l1j.server.util.ClassPathResourceUtil.getFileFromClasspath;
+
 public class NpcActionTable {
 	private static Logger _log = Logger.getLogger(NpcActionTable.class.getName());
 
@@ -75,11 +78,11 @@ public class NpcActionTable {
 	}
 
 	private NpcActionTable() throws Exception {
-		File usersDir = new File("./data/xml/NpcActions/users/");
+		File usersDir = getFileFromClasspath("data/xml/NpcActions/users/");
 		if (usersDir.exists()) {
 			loadDirectoryActions(usersDir);
 		}
-		loadDirectoryActions(new File("./data/xml/NpcActions/"));
+		loadDirectoryActions(getFileFromClasspath("data/xml/NpcActions/"));
 	}
 
 	public static void load() {
@@ -90,7 +93,7 @@ public class NpcActionTable {
 			System.out.println("OK! " + timer.get() + "ms");
 		}
 		catch (Exception e) {
-			_log.log(Level.SEVERE, "NpcActionを読み込めませんでした", e);
+			_log.log(Level.SEVERE, "无法加载 NpcAction", e);
 			System.exit(0);
 		}
 	}

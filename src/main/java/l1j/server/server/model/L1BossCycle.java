@@ -38,6 +38,9 @@ import l1j.server.server.utils.PerformanceTimer;
 import l1j.server.server.utils.Random;
 import l1j.server.server.utils.collections.Maps;
 
+
+import static l1j.server.util.ClassPathResourceUtil.getFileFromClasspath;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 public class L1BossCycle {
 	@XmlAttribute(name = "Name")
@@ -360,7 +363,7 @@ public class L1BossCycle {
 			Unmarshaller um = context.createUnmarshaller();
 
 			// XML -> POJO 変換
-			File file = new File("./data/xml/Cycle/BossCycle.xml");
+			File file = getFileFromClasspath("data/xml/Cycle/BossCycle.xml");
 			L1BossCycleList bossList = (L1BossCycleList) um.unmarshal(file);
 
 			for (L1BossCycle cycle : bossList.getBossCycles()) {
@@ -368,8 +371,8 @@ public class L1BossCycle {
 				_cycleMap.put(cycle.getName(), cycle);
 			}
 
-			// userデータがあれば上書き
-			File userFile = new File("./data/xml/Cycle/users/BossCycle.xml");
+			// 如果用户数据存在则覆盖
+			File userFile = getFileFromClasspath("data/xml/Cycle/users/BossCycle.xml");
 			if (userFile.exists()) {
 				bossList = (L1BossCycleList) um.unmarshal(userFile);
 
@@ -382,7 +385,7 @@ public class L1BossCycle {
 			BossSpawnTable.fillSpawnTable();
 		}
 		catch (Exception e) {
-			_log.log(Level.SEVERE, "BossCycleを読み込めませんでした", e);
+			_log.log(Level.SEVERE, "BossCycle を読み込めませんでした", e);
 			System.exit(0);
 		}
 		System.out.println("OK! " + timer.get() + "ms");

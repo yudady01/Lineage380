@@ -26,6 +26,9 @@ import java.util.logging.Logger;
 import l1j.server.server.utils.StreamUtil;
 import l1j.server.server.utils.collections.Lists;
 
+
+import static l1j.server.util.ClassPathResourceUtil.getFileFromClasspath;
+
 public class BadNamesList {
 	private static Logger _log = Logger.getLogger(BadNamesList.class.getName());
 
@@ -44,7 +47,7 @@ public class BadNamesList {
 		LineNumberReader lnr = null;
 
 		try {
-			File mobDataFile = new File("data/badnames.txt");
+			File mobDataFile = getFileFromClasspath("data/badnames.txt");
 			lnr = new LineNumberReader(new BufferedReader(new FileReader(
 					mobDataFile)));
 

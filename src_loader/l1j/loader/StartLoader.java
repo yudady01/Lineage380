@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StartLoader {
-	private static String JAVA_INI = "./config/java.properties";
+	private static String JAVA_INI = "config/java.properties";
 
 	private static String BIN_FILE = "l1jserver.jar";
 
@@ -47,7 +47,7 @@ public class StartLoader {
 
 		// 讀取參數資料
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(JAVA_INI));
+			BufferedReader br = new BufferedReader(new FileReader(getFileFromClasspath(JAVA_INI)));
 			String s;
 
 			// 逐行讀取參數資料

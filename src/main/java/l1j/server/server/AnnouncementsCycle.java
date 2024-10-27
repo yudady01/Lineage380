@@ -31,6 +31,9 @@ import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_SystemMessage;
 
+
+import static l1j.server.util.ClassPathResourceUtil.getFileFromClasspath;
+
 public class AnnouncementsCycle {
 	private int round = 0;
 	private String line = null;
@@ -43,7 +46,7 @@ public class AnnouncementsCycle {
 	private static BufferedReader buf;
 
 	/** announcementsCycle文件的位置 */
-	private static File dir = new File("data/announceCycle.txt");
+	private static File dir = getFileFromClasspath("data/announceCycle.txt");
 
 	/** 紀錄上一次修改時間 */
 	private static long lastmodify = dir.lastModified();

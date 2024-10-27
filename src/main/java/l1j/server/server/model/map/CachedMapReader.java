@@ -28,6 +28,9 @@ import java.util.Map;
 import l1j.server.server.datatables.MapsTable;
 import l1j.server.server.utils.collections.Maps;
 
+
+import static l1j.server.util.ClassPathResourceUtil.getFileFromClasspath;
+
 /**
  * 將地圖做快取的動作以減少讀取的時間。
  */
@@ -35,10 +38,10 @@ public class CachedMapReader extends MapReader {
 
 	/** 地圖檔的路徑 */
 	@SuppressWarnings("unused")
-	private static final String MAP_DIR = "./maps/";
+	private static final String MAP_DIR = "maps/";
 
 	/** cache 後地圖檔的路徑 */
-	private static final String CACHE_DIR = "./data/mapcache/";
+	private static final String CACHE_DIR = "data/mapcache/";
 
 	/**
 	 * 將指定編號的地圖轉成快取的地圖格式
@@ -49,7 +52,7 @@ public class CachedMapReader extends MapReader {
 	 * @throws IOException
 	 */
 	private L1V1Map cacheMap(final int mapId) throws IOException {
-		File file = new File(CACHE_DIR);
+		File file = getFileFromClasspath(CACHE_DIR);
 		if (!file.exists()) {
 			file.mkdir();
 		}
@@ -86,7 +89,7 @@ public class CachedMapReader extends MapReader {
 	 */
 	@Override
 	public L1Map read(final int mapId) throws IOException {
-		File file = new File(CACHE_DIR + mapId + ".map");
+		File file = getFileFromClasspath(CACHE_DIR + mapId + ".map");
 		if (!file.exists()) {
 			return cacheMap(mapId);
 		}

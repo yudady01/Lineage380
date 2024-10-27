@@ -1,16 +1,16 @@
 /**
  *                            License
- * THE WORK (AS DEFINED BELOW) IS PROVIDED UNDER THE TERMS OF THIS  
- * CREATIVE COMMONS PUBLIC LICENSE ("CCPL" OR "LICENSE"). 
- * THE WORK IS PROTECTED BY COPYRIGHT AND/OR OTHER APPLICABLE LAW.  
- * ANY USE OF THE WORK OTHER THAN AS AUTHORIZED UNDER THIS LICENSE OR  
+ * THE WORK (AS DEFINED BELOW) IS PROVIDED UNDER THE TERMS OF THIS
+ * CREATIVE COMMONS PUBLIC LICENSE ("CCPL" OR "LICENSE").
+ * THE WORK IS PROTECTED BY COPYRIGHT AND/OR OTHER APPLICABLE LAW.
+ * ANY USE OF THE WORK OTHER THAN AS AUTHORIZED UNDER THIS LICENSE OR
  * COPYRIGHT LAW IS PROHIBITED.
- * 
- * BY EXERCISING ANY RIGHTS TO THE WORK PROVIDED HERE, YOU ACCEPT AND  
- * AGREE TO BE BOUND BY THE TERMS OF THIS LICENSE. TO THE EXTENT THIS LICENSE  
- * MAY BE CONSIDERED TO BE A CONTRACT, THE LICENSOR GRANTS YOU THE RIGHTS CONTAINED 
+ *
+ * BY EXERCISING ANY RIGHTS TO THE WORK PROVIDED HERE, YOU ACCEPT AND
+ * AGREE TO BE BOUND BY THE TERMS OF THIS LICENSE. TO THE EXTENT THIS LICENSE
+ * MAY BE CONSIDERED TO BE A CONTRACT, THE LICENSOR GRANTS YOU THE RIGHTS CONTAINED
  * HERE IN CONSIDERATION OF YOUR ACCEPTANCE OF SUCH TERMS AND CONDITIONS.
- * 
+ *
  */
 package l1j.server.server.model.map;
 
@@ -28,6 +28,7 @@ import l1j.server.server.utils.BinaryInputStream;
 import l1j.server.server.utils.FileUtil;
 import l1j.server.server.utils.collections.Lists;
 import l1j.server.server.utils.collections.Maps;
+import l1j.server.util.ClassPathResourceUtil;
 
 /**
  * 地圖 (v2maps/\d*.txt)讀取 (測試用)
@@ -35,17 +36,17 @@ import l1j.server.server.utils.collections.Maps;
 public class V2MapReader extends MapReader {
 
 	/** 地圖的路徑 */
-	private static final String MAP_DIR = "./v2maps/";
+	private static final String MAP_DIR = "v2maps";
 
 	/**
 	 * 傳回所有地圖的編號
-	 * 
+	 *
 	 * @return ArraryList
 	 */
 	private List<Integer> listMapIds() {
 		List<Integer> ids = Lists.newList();
 
-		File mapDir = new File(MAP_DIR);
+		File mapDir = ClassPathResourceUtil.getFileFromClasspath(MAP_DIR);
 		for (String name : mapDir.list()) {
 			File mapFile = new File(mapDir, name);
 			if (!mapFile.exists()) {
@@ -68,7 +69,7 @@ public class V2MapReader extends MapReader {
 
 	/**
 	 * 取得所有地圖與編號的 Mapping
-	 * 
+	 *
 	 * @return Map
 	 * @throws IOException
 	 */
@@ -83,7 +84,7 @@ public class V2MapReader extends MapReader {
 
 	/**
 	 * 從地圖中讀取特定編號的地圖
-	 * 
+	 *
 	 * @param mapId
 	 *            地圖編號
 	 * @return L1Map

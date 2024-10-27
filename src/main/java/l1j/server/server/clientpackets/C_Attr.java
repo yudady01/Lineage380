@@ -58,6 +58,9 @@ import l1j.server.server.templates.L1House;
 import l1j.server.server.templates.L1Npc;
 import l1j.server.server.templates.L1Pet;
 
+
+import static l1j.server.util.ClassPathResourceUtil.getFileFromClasspath;
+
 // Referenced classes of package l1j.server.server.clientpackets:
 // ClientBasePacket
 
@@ -631,7 +634,7 @@ public class C_Attr extends ClientBasePacket {
 			}
 			// 刪除舊盟徽
 			String emblem_file = String.valueOf(oldClan.getEmblemId());
-			File file = new File("emblem/" + emblem_file);
+			File file = getFileFromClasspath("emblem/" + emblem_file);
 			file.delete();
 			ClanTable.getInstance().deleteClan(oldClanName);
 		}
